@@ -10,7 +10,7 @@ import MoviesActions from '../../store/modules/movies/duck';
 import Layout from './Layout';
 
 const INITIAL_STATE: MoviesListParamsDTO = {
-  api_key: 'c16003953e6b19268e9865459a69119b'
+  api_key: 'c16003953e6b19268e9865459a69119b',
 };
 
 const Movies: React.FC = () => {
@@ -19,26 +19,18 @@ const Movies: React.FC = () => {
   const movies = useSelector(
     (store: ApplicationState) => store.movies.movies_list,
   );
-  console.log(movies)
-  const [filters, setFilters] =
-    useState<MoviesListParamsDTO>(INITIAL_STATE);
-  
+  const [filters, setFilters] = useState<MoviesListParamsDTO>(INITIAL_STATE);
+
   const handleParams = (data: MoviesListParamsDTO) => {
     setFilters(data);
     dispatch(MoviesActions.moviesRequest(data));
   };
 
-  const handleBack = () => {
-    navigation.goBack();
-  };
-
-  const {handleSubmit, errors, values, setFieldValue } =
-    useFormik({
-      filters,
-      validateOnChange: false,
-      onSubmit: (data: MoviesListParamsDTO) => handleParams(data),
-    });
-
+  const {handleSubmit, errors, values, setFieldValue} = useFormik({
+    filters,
+    validateOnChange: false,
+    onSubmit: (data: MoviesListParamsDTO) => handleParams(data),
+  });
 
   useEffect(() => {
     dispatch(MoviesActions.clearData());
@@ -46,7 +38,6 @@ const Movies: React.FC = () => {
   }, [dispatch]);
 
   return (
-    
     <Layout
       results={movies.results}
       // filters={values}
