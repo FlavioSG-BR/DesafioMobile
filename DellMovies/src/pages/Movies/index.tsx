@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigation} from '@react-navigation/core';
 import {useSelector, useDispatch} from 'react-redux';
-import {useFormik} from 'formik';
 
 import MoviesListParamsDTO from '../../dtos/movies/MoviesListParamsDTO';
 
@@ -14,28 +12,16 @@ const INITIAL_STATE: MoviesListParamsDTO = {
 };
 
 const Movies: React.FC = () => {
-  const navigation = useNavigation();
   const dispatch = useDispatch();
   const movies = useSelector(
     (store: ApplicationState) => store.movies.movies_list,
   );
   const [filters, setFilters] = useState<MoviesListParamsDTO>(INITIAL_STATE);
 
-  const handleParams = (data: MoviesListParamsDTO) => {
-    setFilters(data);
-    dispatch(MoviesActions.moviesRequest(data));
-  };
-
-  const {handleSubmit, errors, values, setFieldValue} = useFormik({
-    filters,
-    validateOnChange: false,
-    onSubmit: (data: MoviesListParamsDTO) => handleParams(data),
-  });
-
   useEffect(() => {
     dispatch(MoviesActions.clearData());
     dispatch(MoviesActions.moviesRequest(filters));
-  }, [dispatch]);
+  }, [dispatch, filters]);
 
   return (
     <Layout

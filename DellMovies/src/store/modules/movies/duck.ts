@@ -15,18 +15,6 @@ const INITIAL_STATE: MoviesState = {
     total_results: 0,
     error: '',
   },
-  movie: {
-    id: 0,
-    original_title: '',
-    overview: '',
-    poster_path: '',
-    release_date: '',
-    title: '',
-    vote_average: 0,
-    vote_count: 0,
-    backdrop_path: '',
-    error: '',
-  },
   loading: false,
   errors: {},
 };
@@ -103,7 +91,7 @@ export const reducer: Reducer<MoviesState> = (
     case MoviesTypes.MOVIE_SUCCESS:
       return {
         ...state,
-        movie: action.payload.data,
+        movies_list: action.payload.data,
         loading: false,
       };
 
@@ -120,16 +108,6 @@ export const reducer: Reducer<MoviesState> = (
           total_pages: 1,
           total_results: 0,
           error: '',
-        },
-        movie: {
-          original_title: '',
-          overview: '',
-          poster_path: '',
-          release_date: '',
-          title: '',
-          vote_average: 0,
-          vote_count: 0,
-          backdrop_path: '',
         },
       };
 

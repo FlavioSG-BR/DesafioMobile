@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useFormik} from 'formik';
 
@@ -19,30 +19,26 @@ const MoviesDetails: React.FC = () => {
   const movies = useSelector(
     (store: ApplicationState) => store.movies.movies_list,
   );
-  const [params, setParams] = useState<SearchMovieParamsDTO>(INITIAL_STATE);
+  const [initialValues, setInitialValues] =
+    useState<SearchMovieParamsDTO>(INITIAL_STATE);
 
   const handleParams = (data: SearchMovieParamsDTO) => {
-    setParams(data);
+    setInitialValues(data);
     dispatch(MoviesActions.movieRequest(data));
   };
 
   const {handleSubmit, errors, values, setFieldValue} = useFormik({
     validationSchema,
-    params,
+    initialValues,
     onSubmit: (data: SearchMovieParamsDTO) => handleParams(data),
   });
-
-  useEffect(() => {
-    dispatch(MoviesActions.clearData());
-    dispatch(MoviesActions.movieRequest(params));
-  }, [dispatch, params]);
 
   return (
     <Layout
       results={movies.results}
-      query={values}
+      query={values.query}
       setQuery={value => setFieldValue('query', value)}
-      onNext={handleSubmit}
+      sendSearch={handleSubmit}
       errors={errors}
     />
   );

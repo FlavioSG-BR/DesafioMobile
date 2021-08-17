@@ -6,7 +6,6 @@ export type MoviesError = StateError<MoviesDTO>;
 
 export interface MoviesState {
   readonly movies_list: MoviesListDTO;
-  readonly movie: MoviesDTO;
   readonly loading: boolean;
   readonly errors: MoviesError;
 }

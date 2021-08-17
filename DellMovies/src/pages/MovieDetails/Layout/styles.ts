@@ -18,3 +18,7 @@ export const HeaderTitle = styled(HeaderText)`
   font-weight: bold;
   margin-bottom: 12px;
 `;
+
+export const Row = styled.View`
+  flex-direction: row;
+`;

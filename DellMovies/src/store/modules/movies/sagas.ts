@@ -32,4 +32,7 @@ export function* findMovie({payload}: MovieParams): Generator {
   }
 }
 
-export default all([takeLatest(MoviesTypes.MOVIES_REQUEST, listMovies)]);
+export default all([
+  takeLatest(MoviesTypes.MOVIES_REQUEST, listMovies),
+  takeLatest(MoviesTypes.MOVIE_REQUEST, findMovie),
+]);
