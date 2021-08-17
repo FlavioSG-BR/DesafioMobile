@@ -16,12 +16,15 @@ const Movies: React.FC = () => {
   const movies = useSelector(
     (store: ApplicationState) => store.movies.movies_list,
   );
-  const [filters, setFilters] = useState<MoviesListParamsDTO>(INITIAL_STATE);
+  const [initialValues, setInitialValues] =
+    useState<MoviesListParamsDTO>(INITIAL_STATE);
 
   useEffect(() => {
-    dispatch(MoviesActions.clearData());
-    dispatch(MoviesActions.moviesRequest(filters));
-  }, [dispatch, filters]);
+    dispatch(MoviesActions.moviesRequest(initialValues));
+    return () => {
+      dispatch(MoviesActions.clearData());
+    };
+  }, [dispatch, initialValues]);
 
   return (
     <Layout

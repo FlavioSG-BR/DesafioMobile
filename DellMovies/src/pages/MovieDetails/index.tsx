@@ -27,6 +27,14 @@ const MoviesDetails: React.FC = () => {
     dispatch(MoviesActions.movieRequest(data));
   };
 
+  const handleClearSearch = () => {
+    dispatch(
+      MoviesActions.moviesRequest({
+        api_key: 'c16003953e6b19268e9865459a69119b',
+      }),
+    );
+  };
+
   const {handleSubmit, errors, values, setFieldValue} = useFormik({
     validationSchema,
     initialValues,
@@ -40,6 +48,7 @@ const MoviesDetails: React.FC = () => {
       setQuery={value => setFieldValue('query', value)}
       sendSearch={handleSubmit}
       errors={errors}
+      clearSearch={handleClearSearch}
     />
   );
 };

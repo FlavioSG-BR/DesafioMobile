@@ -12,6 +12,7 @@ type MovieListPage = {
   setQuery: (query: string) => void;
   loading: boolean;
   sendSearch: () => void;
+  clearSearch: () => void;
 };
 
 const Search: React.FC<MovieListPage> = ({
@@ -19,6 +20,7 @@ const Search: React.FC<MovieListPage> = ({
   query,
   setQuery,
   sendSearch,
+  clearSearch,
 }) => {
   const {colors} = useTheme();
   return (
@@ -30,7 +32,8 @@ const Search: React.FC<MovieListPage> = ({
           onChangeText={setQuery}
           style={{width: 90, flex: 3}}
         />
-        <View style={{alignSelf: 'flex-end'}}>
+        <View style={{alignSelf: 'flex-end', flexDirection: 'row'}}>
+          <Button title="X" color={colors.error} onPress={clearSearch} />
           <Button
             title="Search"
             color={colors.secondary}
