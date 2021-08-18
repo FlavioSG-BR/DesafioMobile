@@ -1,17 +1,18 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import Dashboard from './Dashboard';
+import DrawerContent from './DrawerContent';
 
-const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const Routes: React.FC = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Dashboard" component={Dashboard} />
-      </Stack.Navigator>
+      <Drawer.Navigator drawerContent={() => <DrawerContent />}>
+        <Drawer.Screen name="Dashboard" component={Dashboard} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };

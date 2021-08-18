@@ -15,15 +15,17 @@ import sagas from './modules/rootSaga';
 
 import {MoviesState} from './modules/movies/types';
 import {SettingsState} from './modules/settings/types';
+import {GenresState} from './modules/genres/types';
 
 export interface ApplicationState {
   movies: MoviesState;
   settings: SettingsState;
+  genres: GenresState;
 }
 
 const persistConfig = {
-  key: '@meta_track/horeb',
-  whitelist: ['movies', 'offline'],
+  key: '@dellMovies',
+  whitelist: ['movies', 'genres'],
   storage,
 };
 

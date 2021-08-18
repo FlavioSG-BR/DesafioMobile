@@ -4,7 +4,8 @@ module.exports = {
   singleQuote: true,
   trailingComma: 'all',
   arrowParens: 'avoid',
-  semi: true,
+  semi: false,
   tabWidth: 2,
-  useTabs: false
+  useTabs: false,
+  prettier:  ["error", {"singleQuote": true, "parser": "flow"}],
 };

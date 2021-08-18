@@ -2,11 +2,10 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTheme} from 'styled-components';
-import {Text, View} from 'react-native';
 
 import Movies from '../pages/Movies';
 import MovieDetails from '../pages/MovieDetails';
-import Settings from '../pages/Settings';
+// import Settings from '../pages/Settings';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -38,6 +37,7 @@ const Routes: React.FC = () => {
         }}
         component={MovieDetails}
       />
+
       {/* <BottomTab.Screen
         name="Settings"
         options={{

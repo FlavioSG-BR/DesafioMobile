@@ -6,4 +6,4 @@ export default interface MoviesListDTO {
   total_pages: number;
   total_results: number;
   error: string;
-}
+};
