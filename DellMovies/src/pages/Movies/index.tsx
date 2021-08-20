@@ -9,6 +9,7 @@ import Layout from './Layout';
 
 const INITIAL_STATE: MoviesListParamsDTO = {
   api_key: 'c16003953e6b19268e9865459a69119b',
+  with_genres: [],
 };
 
 const Movies: React.FC = () => {
@@ -16,15 +17,17 @@ const Movies: React.FC = () => {
   const movies = useSelector(
     (store: ApplicationState) => store.movies.movies_list,
   );
+  const genres = useSelector(
+    (store: ApplicationState) => store.movies.filters.genres,
+  );
   const [initialValues, setInitialValues] =
     useState<MoviesListParamsDTO>(INITIAL_STATE);
 
   useEffect(() => {
-    dispatch(MoviesActions.moviesRequest(initialValues));
-    return () => {
-      dispatch(MoviesActions.clearData());
-    };
-  }, [dispatch, initialValues]);
+    dispatch(
+      MoviesActions.moviesRequest({...initialValues, with_genres: genres}),
+    );
+  }, [dispatch, initialValues, genres]);
 
   return (
     <Layout

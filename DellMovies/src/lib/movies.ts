@@ -9,7 +9,10 @@ export default {
     const {data} = await axios.get<MoviesListDTO>(
       'https://api.themoviedb.org/3/discover/movie/',
       {
-        params,
+        params: {
+          ...params,
+          with_genres: params.with_genres.join(','),
+        },
       },
     );
     if (data.error) {

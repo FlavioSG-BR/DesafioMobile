@@ -7,7 +7,7 @@ import {Container, Row} from './styles';
 import {useTheme} from 'styled-components';
 
 type MovieListPage = {
-  results?: MoviesDTO[];
+  results: MoviesDTO[];
   query: string;
   setQuery: (query: string) => void;
   loading: boolean;

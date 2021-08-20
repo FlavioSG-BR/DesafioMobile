@@ -29,8 +29,9 @@ const MoviesDetails: React.FC = () => {
 
   const handleClearSearch = () => {
     dispatch(
-      MoviesActions.moviesRequest({
+      MoviesActions.movieRequest({
         api_key: 'c16003953e6b19268e9865459a69119b',
+        query: '',
       }),
     );
   };

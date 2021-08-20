@@ -11,6 +11,8 @@ const theme: DefaultTheme = {
     primary: '#fca311',
     secondary: '#e5e5e5',
     page: '#ffffff',
+    active: '#005ce6',
+    deactive: '#000000',
   },
 };
 

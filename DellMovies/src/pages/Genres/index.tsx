@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {View, Text} from 'react-native';
 
 import GenresListParamsDTO from '../../dtos/genres/GenresListParamsDTO';
 
 import {ApplicationState} from '../../store';
 import GenresActions from '../../store/modules/genres/duck';
+import MovieActions from '../../store/modules/movies/duck';
 import Layout from './Layout';
 
 const INITIAL_STATE: GenresListParamsDTO = {
@@ -15,25 +15,32 @@ const INITIAL_STATE: GenresListParamsDTO = {
 
 const Movies: React.FC = () => {
   const dispatch = useDispatch();
-  const data = useSelector((store: ApplicationState) => store.genres.data);
-  const [initialValues, setInitialValues] =
-    useState<GenresListParamsDTO>(INITIAL_STATE);
+  const allGenres = useSelector((store: ApplicationState) => store.genres.data);
+
+  const filters = useSelector(
+    (store: ApplicationState) => store.movies.filters.genres,
+  );
+  console.log({filters});
+  const setGenresFilters = (genres: number[]) =>
+    dispatch(MovieActions.setFilters({...filters, genres}));
 
   useEffect(() => {
-    dispatch(GenresActions.genresRequest(initialValues));
+    dispatch(GenresActions.genresRequest(INITIAL_STATE));
     return () => {
       dispatch(GenresActions.clearData());
     };
-  }, [dispatch, initialValues]);
+  }, [dispatch]);
+
+  const clearData = () => {
+    dispatch(MovieActions.clearFilters());
+  };
 
   return (
     <Layout
-      results={data.genres}
-      // filters={values}
-      // setFilters={value => setFieldValue('filters', value)}
-      // onBack={handleBack}
-      // onNext={handleSubmit}
-      // errors={errors}
+      results={allGenres.genres}
+      genresFilters={filters}
+      setGenresFilters={setGenresFilters}
+      clearData={clearData}
     />
   );
 };

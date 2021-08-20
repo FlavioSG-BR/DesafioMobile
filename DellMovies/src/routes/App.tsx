@@ -11,7 +11,7 @@ const Routes: React.FC = () => {
   return (
     <NavigationContainer>
       <Drawer.Navigator drawerContent={() => <DrawerContent />}>
-        <Drawer.Screen name="Dashboard" component={Dashboard} />
+        <Drawer.Screen name="DELLFilmes" component={Dashboard} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

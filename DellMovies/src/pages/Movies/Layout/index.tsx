@@ -5,8 +5,8 @@ import MovieCard from './MovieCard';
 import {Container} from './styles';
 
 type MovieListPage = {
-  results: MoviesDTO[];
-};
+  results: MoviesDTO[]
+}
 
 const Home: React.FC<MovieListPage> = ({results}) => {
   return (
